@@ -1,118 +1,29 @@
-# Jardiff
+[update-readmes]   Mode: rewrite — migrating to template structure...
+# jardiff
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.bric3.jardiff/jardiff.svg?label=Maven%20Central)](https://search.maven.org/artifact/io.github.bric3.jardiff/jardiff)
-[![GitHub release](https://img.shields.io/github/release/bric3/jardiff.svg?label=Github%20Release)](https://github.com/bric3/jardiff/releases/latest)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/bric3/jardiff/ci.yml?branch=main&label=build)](https://github.com/bric3/jardiff/actions?query=branch%3Amain)
-[![License](https://img.shields.io/github/license/bric3/jardiff.svg)](LICENSE)
+[![Built with Ona](https://ona.com/build-with-ona.svg)](https://app.ona.com/#https://github.com/Interested-Deving-1896/jardiff)
 
-Jardiff is a command-line tool for comparing the contents of JAR files and directories. It provides detailed, line-based diffs of class files and resources, making it easy to spot changes between builds, releases, or different versions of Java/Kotlin projects.
+<!-- AI:start:what-it-does -->
+_Description pending._
+<!-- AI:end:what-it-does -->
 
-> [!NOTE]
-> This project is not affiliated with Lightbend or the original jardiff project.
-> 
-> While [lightbend-labs/jardiff](https://github.com/lightbend-labs/jardiff) and this tool share the same name and similar goals, they have different features:
-> 
-> The **lightbend-labs/jardiff** focuses on Scala projects, and it has a some useful flags to tweak the bytecode output (ordering, suppress private members). This tool also has a mode to create a git repository to leverage git diff capabilities.
-> 
-> While this **bric3/jardiff** tool offers a more versatile tool to inspect class differences
-> * Additional to the usual diff output, it provides statistics (`--stat`) and status (`--status`)
->   modes similar to git diff/status
-> * Supports class extension coalescing, in case classes are renamed to other extensions like `.bin`, `.clazz`, etc.
-> * Various text representation modes for class files
-> * Flexible glob pattern filtering for including/excluding files
-> * Offers limited support for non-binary text files
+## Architecture
 
-Example output in default mode:
+<!-- AI:start:architecture -->
+_Architecture documentation pending._
+<!-- AI:end:architecture -->
 
-```diff
---- foo/bar/qux/Baz.class
-+++ foo/bar/qux/Baz.class
-@@ -6,1548 +6,17 @@
-   // access flags 0x9
-   public static create()Lfoo/bar/ZuulMatcher;
-     NEW foo/bar/ZuulMatcher
-     DUP
--    LDC 15
-+    LDC 3
-     ANEWARRAY foo/bar/Zuul
-     DUP
-     LDC 0
-     NEW foo/bar/Zuul
-     DUP
--    LDC 14
--    ANEWARRAY java/lang/String
--    DUP
-     LDC 0
--    LDC "foo.bar.qux.T:18"
--    AASTORE
--    DUP
--    LDC 1
--    LDC "foo.bar.qux.U:33"
--    AASTORE
--    DUP
--    LDC 2
--    LDC "foo.bar.qux.V:49"
--    AASTORE
--    DUP
--    LDC 3
--    LDC "foo.bar.qux.W:68"
--    AASTORE
--    DUP
- ...
-+    LDC 2
-     NEW foo/bar/Zuul
-     DUP
-     LDC 0
-     ANEWARRAY java/lang/String
+## Install
+
+<!-- Add installation instructions here. This section is yours — the AI will not modify it. -->
+
+```bash
+git clone https://github.com/Interested-Deving-1896/jardiff.git
+cd jardiff
 ```
-
-Or with the `--stat` mode
-
-```
-D  foo/bar/qux/Zuul.class
- D foo/bar/qux/Zig.class
-M  foo/bar/qux/Baz.class
-   foo/bar/qux/Zorg.class
-```
-
-Or with the `--status` mode
-
-```
- foo/bar/qux/Zuul.class | 42 ++++++++++++++++++++++++++++++++----------
- foo/bar/qux/Zig.class  |  1 -
- foo/bar/qux/Baz.class  | 34 ++++++++++++++++++++++------------
- foo/bar/qux/Zorg.class |  0 
- 4 files changed, 54 insertions(+), 23 deletions(-)
-```
-
-When output piped to [delta](https://github.com/dandavison/delta), it looks like this:
-
-<img alt="jardiff with delta" src=".github/images/jardiff-delta-screenshot.png" width="600"/>
-
-
-## Features
-
-Other tools didn't have the feature I wanted, or they were impractical to use, so I made my own.
-
-* Compare JARs and directories recursively
-* Line-based diffs for each files
-* Class file comparison using different strategy to produce text
-   * ASM's Textify (_default_)
-   * Class outline (version, is kotlin/groovy class, synthetic or bridge members)
-   * Class File Version only
-* Binary diff as sha-1 hashes
-* Include glob patterns (for the relative paths inside the jars/directories)
-* Exclude glob patterns (for the relative paths inside the jars/directories)
-* Supports `--exit-code` for CI/CD pipelines
-
-Features planned for future releases... :
-* Ignoring debug information in class files (like line numbers, local variable names, etc.)
-* Append Koltin/Scala/Groovy detection to regular class text output
-* Sort members alphabetically
-* Replace ASM by the Class file API (Need JDK 24+)
-* Better terminal integration, ideas: pager support, colors configuration, auto-detection of `delta`, etc. (Might need FFM, need JDK 22+)
 
 ## Usage
+
 
 > [!CAUTION] 
 > This tool needs a JDK11 to build and run. Example with `mise`
@@ -184,25 +95,50 @@ $ ./gradlew run --args="{left} {right}"
 - `{left}` and `{right}` can be paths to JAR files or directories.
 - The tool outputs a summary and detailed diff of all differing files.
 
-## Building
+## Configuration
 
-To build the project:
+<!-- Document configuration options here. This section is yours — the AI will not modify it. -->
 
-```shell
-$ ./gradlew build
+## CI
+
+<!-- AI:start:ci -->
+_CI documentation pending._
+<!-- AI:end:ci -->
+
+## Mirror chain
+
+<!-- AI:start:mirror-chain -->
+This repo is maintained in [`Interested-Deving-1896/jardiff`](https://github.com/Interested-Deving-1896/jardiff) and mirrored through:
+
+```
+Interested-Deving-1896/jardiff  ──►  OpenOS-Project-OSP/jardiff  ──►  OpenOS-Project-Ecosystem-OOC/jardiff
 ```
 
-## Dependencies
+Changes flow downstream automatically via the hourly mirror chain in
+[`fork-sync-all`](https://github.com/Interested-Deving-1896/fork-sync-all).
+Direct commits to OSP or OOC are detected and opened as PRs back to `Interested-Deving-1896`.
+<!-- AI:end:mirror-chain -->
 
-- Kotlin
-- Picocli
-- ASM
-- java-diff-utils
-- Byte Buddy
-- Apache Tika (for charset detection)
+## Contributors
+
+<!-- AI:start:contributors -->
+_Contributors pending._
+<!-- AI:end:contributors -->
+
+## Origins
+
+<!-- AI:start:origins -->
+_Original project — no upstream fork._
+<!-- AI:end:origins -->
+
+## Resources
+
+<!-- AI:start:resources -->
+_No additional resource files found._
+<!-- AI:end:resources -->
 
 ## License
 
-Copyright 2025 Brice Dutheil
-
-Unless otherwise noted, all components are licenced under the [Mozilla Public License Version 2.0](./LICENSE).
+<!-- AI:start:license -->
+<!-- License not detected — add a LICENSE file to this repo. -->
+<!-- AI:end:license -->
